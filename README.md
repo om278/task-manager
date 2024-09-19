@@ -45,7 +45,7 @@ This is a simple **Task Manager Application** built using **React** and **Tailwi
 2. Navigate into the project directory:
 
     ```bash
-    cd task-management-app
+    cd task-manager
 3. Install dependencies:
 
     ```bash
