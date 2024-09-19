@@ -6,6 +6,7 @@ const EditTaskForm = ({ task, onSave, onClose }) => {
   const [dueDate, setDueDate] = useState(task.dueDate);
   const [priority, setPriority] = useState(task.priority);
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -15,11 +16,20 @@ const EditTaskForm = ({ task, onSave, onClose }) => {
       title,
       description,
       dueDate,
-      priority
+      priority,
     });
 
-    // Close the form
-    onClose();
+    onClose(); // Close the form
+  };
+
+  // Mark task as done by setting priority to "Done"
+  const handleMarkAsDone = () => {
+    onSave({
+      ...task,
+      priority: 'Done',
+    });
+
+    onClose(); // Close the form after marking as done
   };
 
   return (
@@ -68,7 +78,7 @@ const EditTaskForm = ({ task, onSave, onClose }) => {
               <option value="Low">Low</option>
             </select>
           </div>
-          <div className="flex justify-end space-x-4">
+          <div className="flex justify-between items-center">
             <button
               type="button"
               className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
@@ -81,6 +91,13 @@ const EditTaskForm = ({ task, onSave, onClose }) => {
               className="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600"
             >
               Save
+            </button>
+            <button
+              type="button"
+              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+              onClick={handleMarkAsDone}
+            >
+              Mark as Done
             </button>
           </div>
         </form>
